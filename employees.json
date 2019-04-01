@@ -1,0 +1,20 @@
+[
+    {
+        "name": "Jon",
+        "email": "jon@gmail.com",
+        "mobile": "9874563210",
+        "jobTitle": "Tester"
+    },
+    {
+        "name": "Jack",
+        "email": "jack@gmail.com",
+        "mobile": "9877893210",
+        "jobTitle": "Developer"
+    },
+    {
+        "name": "Sharon",
+        "email": "sharon@gmail.com",
+        "mobile": "7884563210",
+        "jobTitle": "Manager"
+    }
+]
