@@ -22,7 +22,7 @@
                     <td>{{emp.jobTitle}}</td>
                     <td>
                         <button class="btn btn-primary">Edit</button>
-                        <button class="btn btn-danger">Delete</button>
+                        <button class="btn btn-danger" @click="deleteEmp(emp.id)">Delete</button>
                     </td>
                 </tr>
             </tbody>
@@ -31,7 +31,6 @@
 </template>
 
 <script>
-import {empDomain} from './../config'
 export default {
     props: {
         emps: {
@@ -46,7 +45,18 @@ export default {
             
         }
     },
-    
+    methods: {
+        deleteEmp(id) {
+            let response = confirm("Are you sure, you want to delete employee with id: " + id)
+
+            if (response) {
+                this.$emit("emp-delete", {
+                    id
+                })
+            }
+            
+        }
+    }
 }
 </script>
 

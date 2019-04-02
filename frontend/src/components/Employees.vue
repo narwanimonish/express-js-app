@@ -1,9 +1,16 @@
 <template>
     <div class="emp">
-        <employees-create @emp-create="createEmp"></employees-create>
+        <employees-create 
+            @emp-create="createEmp"
+        ></employees-create>
+
         <br>
         <br>
-        <employees-list :emps="emps"></employees-list>
+
+        <employees-list 
+            :emps="emps"
+            @emp-delete="deleteEmp"
+        ></employees-list>
     </div>
 </template>
 
@@ -45,6 +52,13 @@ export default {
                 alert("Employee created: " + newEmp.name)
             })
             
+        },
+
+        deleteEmp(empData) {
+            let id = empData.id
+            this.$http.delete(empDomain + "/" + id).then((response) => {
+                this.emps = response.data
+            })
         }
     }
 }
