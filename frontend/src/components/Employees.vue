@@ -1,9 +1,9 @@
 <template>
     <div class="emp">
-        <employees-create></employees-create>
+        <employees-create @emp-create="createEmp"></employees-create>
         <br>
         <br>
-        <employees-list></employees-list>
+        <employees-list :emps="emps"></employees-list>
     </div>
 </template>
 
@@ -30,10 +30,21 @@ export default {
     },
 
     methods: {
-        fetchEmp () {
+        fetchEmp() {
             this.$http.get(empDomain).then((response) => {
                 this.emps = response.data
             })
+        },
+
+        createEmp(empData) {
+            let emp = empData.emp
+            
+            this.$http.post(empDomain, emp).then((response) => {
+                let newEmp = response.data
+                this.emps.push(newEmp)
+                alert("Employee created: " + newEmp.name)
+            })
+            
         }
     }
 }

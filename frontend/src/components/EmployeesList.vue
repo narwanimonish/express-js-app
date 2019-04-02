@@ -15,7 +15,7 @@
             </thead>
             <tbody>
                 <tr v-for="(emp,key) in emps" :key="key">
-                    <th scope="row">{{key + 1}}</th>
+                    <th scope="row">{{emp.id}}</th>
                     <td>{{emp.name}}</td>
                     <td>{{emp.email}}</td>
                     <td>{{emp.mobile}}</td>
@@ -33,34 +33,17 @@
 <script>
 import {empDomain} from './../config'
 export default {
+    props: {
+        emps: {
+
+        }
+    },
     created () {
         
     },
     data () {
         return {
-            emps: [
-                {
-                    "name": "Jon",
-                    "email": "jon@gmail.com",
-                    "mobile": "9874563210",
-                    "jobTitle": "Tester",
-                    "id": 1
-                },
-                {
-                    "name": "Jack",
-                    "email": "jack@gmail.com",
-                    "mobile": "9877893210",
-                    "jobTitle": "Developer",
-                    "id": 2
-                },
-                {
-                    "name": "Sharon",
-                    "email": "sharon@gmail.com",
-                    "mobile": "7884563210",
-                    "jobTitle": "Manager",
-                    "id": 3
-                }
-            ]
+            
         }
     },
     

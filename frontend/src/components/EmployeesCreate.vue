@@ -5,7 +5,7 @@
 
         <div class="card" style="width: 60rem;">
             <div class="card-body">
-                <form @submit.prevent="formSubmitted">
+                <form @submit.prevent="createEmployee">
 
                     <div class="form-group">
                         <!-- <label for="emp-name">Enter Name</label> -->
@@ -31,7 +31,7 @@
                         <small class="invalid-feedback" v-if="isError">Enter valid Job title</small>
                     </div>
                     
-                    <button type="submit" class="btn btn-primary" @click="createEmployee">Create</button>
+                    <button type="submit" class="btn btn-primary">Create</button>
                     <button type="submit" class="btn btn-danger" @click="resetForm">Reset</button>
                 </form>
             </div>
@@ -63,7 +63,10 @@ export default {
             }
         },
         createEmployee () {
-            console.log("create here")
+            this.$emit("emp-create", {
+                emp: this.emp
+            })
+            // this.resetForm()
         },
     }
 }
