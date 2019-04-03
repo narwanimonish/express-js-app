@@ -74,7 +74,7 @@ export default {
         },
 
         editEmp(empData) {
-            let id = empData.id, index = empData.key
+            let index = empData.key
             /* Cloning the current emp data to variable */
             this.currEmp = JSON.parse(JSON.stringify(this.emps[index]))
             this.isEditing = true
@@ -94,6 +94,7 @@ export default {
                     /* written this just to overcome the problem which props is not reflecting change if changed on value in object */
                     this.emps = JSON.parse(JSON.stringify(this.emps))
                     
+                    this.closeModal()
                 })
             }
         }

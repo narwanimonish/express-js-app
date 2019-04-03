@@ -44,10 +44,10 @@ export default {
     data () {
         return {
             emp: {
-                name: "monish",
-                email: "narwanimonish@gmail.com",
-                mobile: "8080690808",
-                jobTitle: "Software Developer"
+                name: "",
+                email: "",
+                mobile: "",
+                jobTitle: ""
             }, 
             isError: false
         }
@@ -66,7 +66,7 @@ export default {
             this.$emit("emp-create", {
                 emp: this.emp
             })
-            // this.resetForm()
+            this.resetForm()
         },
     }
 }
