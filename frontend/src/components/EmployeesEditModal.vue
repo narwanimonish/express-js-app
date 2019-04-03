@@ -14,25 +14,25 @@
 
                             <div class="form-group">
                                 <!-- <label for="emp-name">Enter Name</label> -->
-                                <input type="text" class="form-control" id="emp-name" aria-describedby="empName" placeholder="Enter Name" v-model="emp.name" :class="{'is-invalid': isError}">
+                                <input type="text" class="form-control" id="emp-name" aria-describedby="empName" placeholder="Enter Name" v-model="emp.name" :class="{'is-invalid': isError}" ref="name">
                                 <small class="invalid-feedback" v-if="isError">Enter valid name</small>
                             </div>
 
                             <div class="form-group">
                                 <!-- <label for="emp-email">Enter email</label> -->
-                                <input type="email" class="form-control" id="emp-email" aria-describedby="empemail" placeholder="Enter e-mail" v-model="emp.email" :class="{'is-invalid': isError}">
+                                <input type="email" class="form-control" id="emp-email" aria-describedby="empemail" placeholder="Enter e-mail" v-model="emp.email" :class="{'is-invalid': isError}" ref="email">
                                 <small class="invalid-feedback" v-if="isError">Enter valid email</small>
                             </div>
 
                             <div class="form-group">
                                 <!-- <label for="emp-mobile">Enter mobile</label> -->
-                                <input type="text" class="form-control" id="emp-mobile" aria-describedby="empmobile" placeholder="Enter mobile number" v-model="emp.mobile" :class="{'is-invalid': isError}">
+                                <input type="text" class="form-control" id="emp-mobile" aria-describedby="empmobile" placeholder="Enter mobile number" v-model="emp.mobile" :class="{'is-invalid': isError}" ref="mobile">
                                 <small class="invalid-feedback" v-if="isError">Enter valid mobile number</small>
                             </div>
 
                             <div class="form-group">
                                 <!-- <label for="emp-jobTitle">Enter Job title</label> -->
-                                <input type="text" class="form-control" id="emp-jobTitle" aria-describedby="empjobTitle" placeholder="Enter Job title" v-model="emp.jobTitle" :class="{'is-invalid': isError}">
+                                <input type="text" class="form-control" id="emp-jobTitle" aria-describedby="empjobTitle" placeholder="Enter Job title" v-model="emp.jobTitle" :class="{'is-invalid': isError}" ref="jobTitle">
                                 <small class="invalid-feedback" v-if="isError">Enter valid Job title</small>
                             </div>
                             
@@ -68,9 +68,31 @@ export default {
         },
 
         editEmployee() {
-            this.$emit("emp-save-modal", {
-                emp: this.emp
-            })
+            if (this.validateEmp()) {
+                this.$emit("emp-save-modal", {
+                    emp: this.emp
+                })
+            }
+        },
+        validateEmp() {
+            let emp = this.emp
+            
+            let keys = Object.keys(this.$refs)
+            console.log(this.$refs, keys)
+            let errors = []
+            for(let i = 0; i < keys.length; i++) {
+                if(!emp[keys[i]] || !emp[keys[i]].length) {
+                    errors.push(keys[i])
+                    this.$refs[keys[i]].classList.add("is-invalid")
+                } else {
+                    this.$refs[keys[i]].classList.remove("is-invalid")
+                }
+            }
+            
+            if(errors.length == 0) {
+                return true
+            }
+            return false
         }
     }
 }
