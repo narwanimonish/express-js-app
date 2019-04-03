@@ -1,16 +1,17 @@
 <template>
   <div id="app" class="container">
-    <employees></employees>
+    <main-menu></main-menu>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import Employees from './components/Employees.vue'
+import MainMenu from './components/MainMenu.vue'
 
 export default {
   name: 'app',
   components: {
-    Employees
+    MainMenu
   }
 }
 </script>
