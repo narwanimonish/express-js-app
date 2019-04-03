@@ -68,7 +68,6 @@ export default {
         },
 
         editEmployee() {
-            console.log("here..")
             this.$emit("emp-save-modal", {
                 emp: this.emp
             })

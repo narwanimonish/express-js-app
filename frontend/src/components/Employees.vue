@@ -85,7 +85,6 @@ export default {
         },
 
         updateEmp(empData) {
-            console.log("update here..")
             let emp = empData.emp
 
             if (emp.id) {
