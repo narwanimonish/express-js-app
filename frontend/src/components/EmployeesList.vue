@@ -5,7 +5,7 @@
         <table class="table table-bordered">
             <thead>
                 <tr>
-                    <th scope="col">Id</th>
+                    <th scope="col">#</th>
                     <th scope="col">Name</th>
                     <th scope="col">e-mail</th>
                     <th scope="col">Mobile Number</th>
