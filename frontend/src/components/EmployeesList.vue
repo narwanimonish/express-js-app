@@ -21,7 +21,7 @@
                     <td>{{emp.mobile}}</td>
                     <td>{{emp.jobTitle}}</td>
                     <td>
-                        <button class="btn btn-primary">Edit</button>
+                        <button class="btn btn-primary" @click="editEmp(emp.id, key)">Edit</button>
                         <button class="btn btn-danger" @click="deleteEmp(emp.id)">Delete</button>
                     </td>
                 </tr>
@@ -55,8 +55,20 @@ export default {
                 })
             }
             
+        },
+
+        editEmp(id, key) {
+            this.$emit("emp-edit", {
+                id, 
+                key
+            })
         }
     }
 }
 </script>
 
+<style scoped>
+button {
+    margin-right: 0.25rem;
+}
+</style>

@@ -10,7 +10,15 @@
         <employees-list 
             :emps="emps"
             @emp-delete="deleteEmp"
+            @emp-edit="editEmp"
         ></employees-list>
+
+        <employees-edit-modal
+            :emp="currEmp"
+            :show="isEditing"
+            @emp-close-modal="closeModal"
+            @emp-save-modal="updateEmp"
+        ></employees-edit-modal>
     </div>
 </template>
 
@@ -19,11 +27,13 @@
 import {empDomain} from './../config'
 import EmployeesCreate from './EmployeesCreate'
 import EmployeesList from './EmployeesList'
+import EmployeesEditModal from './EmployeesEditModal'
 
 export default {
     components: {
         EmployeesCreate,
         EmployeesList,
+        EmployeesEditModal,
     },
 
     created() {
@@ -32,7 +42,9 @@ export default {
 
     data() {
         return {
-            emps: []
+            emps: [],
+            currEmp: {},
+            isEditing: false
         }
     },
 
@@ -59,8 +71,35 @@ export default {
             this.$http.delete(empDomain + "/" + id).then((response) => {
                 this.emps = response.data
             })
+        },
+
+        editEmp(empData) {
+            let id = empData.id, index = empData.key
+            /* Cloning the current emp data to variable */
+            this.currEmp = JSON.parse(JSON.stringify(this.emps[index]))
+            this.isEditing = true
+        },
+
+        closeModal() {
+            this.isEditing = false
+        },
+
+        updateEmp(empData) {
+            console.log("update here..")
+            let emp = empData.emp
+
+            if (emp.id) {
+                this.$http.put(empDomain + "/" + emp.id, emp).then(response => {
+                    this.emps[emp.id - 1] = response.data
+                    
+                    /* written this just to overcome the problem which props is not reflecting change if changed on value in object */
+                    this.emps = JSON.parse(JSON.stringify(this.emps))
+                    
+                })
+            }
         }
     }
 }
 </script>
+
 

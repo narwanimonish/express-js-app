@@ -72,3 +72,9 @@ export default {
 }
 </script>
 
+
+<style scoped>
+button {
+    margin-right: 0.25rem;
+}
+</style>
