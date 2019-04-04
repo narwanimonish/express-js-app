@@ -40,7 +40,6 @@
 </template>
 
 <script>
-import { error } from 'util';
 export default {
     data () {
         return {

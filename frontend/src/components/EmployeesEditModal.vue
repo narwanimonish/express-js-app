@@ -1,6 +1,6 @@
 <template>
     <div class="emp-edit" v-if="show">
-        <div class="modal">
+        <div class="modal" @click="closeEdit">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -78,7 +78,6 @@ export default {
             let emp = this.emp
             
             let keys = Object.keys(this.$refs)
-            console.log(this.$refs, keys)
             let errors = []
             for(let i = 0; i < keys.length; i++) {
                 if(!emp[keys[i]] || !emp[keys[i]].length) {
@@ -101,6 +100,7 @@ export default {
 <style scoped>
 .modal {
   display:block;
+  background-color: rgba(74, 74, 74,0.5);
 }
 </style>
 
