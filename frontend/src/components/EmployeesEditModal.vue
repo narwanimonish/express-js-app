@@ -1,6 +1,6 @@
 <template>
     <div class="emp-edit" v-if="show">
-        <div class="modal" @click="closeEdit">
+        <div class="modal">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
